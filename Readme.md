@@ -1,14 +1,14 @@
 # Instruction Manual
 <code>@Author</code> - SHIVANSHU
 
-This instruction manual is aimed to provide quick insigths and procedures into the whole architecture . Please go through these instructions to safely install and run the microservices on your local mahine
+This instruction manual is aimed to provide quick insights and procedures into the whole architecture . Please go through these instructions to safely install and run the microservices on your local mahine
 
 #### Postman Collection
 https://api.postman.com/collections/5376901-10d0bdbf-94a1-4752-a2f4-7a9e448b13ba?access_key=PMAT-01HERD7FKTW1H684NB3PCYY8F2
 
 # Operational Notes
 - While registering the user you will receive the an OTP in your email id.
-- Email Id setup is done through SendGrid. If you don't receive any email containg OTP. Please use the OTP printed in the console. (This is just for testing purposes)
+- Email setup is done through SendGrid. If you don't receive any email containg OTP. Please use the OTP printed in the console. (This is just for testing purposes)
 - Sample email templates from my other project is used. Please ignore the content of the emails
 - Application is containerized using docker-compose
 
