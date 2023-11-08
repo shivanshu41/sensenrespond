@@ -11,7 +11,8 @@ Limit each IP to 100 requests per `window` (here, per 15 minutes).
 
 # Operational Notes
 - While registering the user you will receive the an OTP in your email id.
-- Email setup is done through SendGrid. If you don't receive any email containg OTP. Please use the OTP printed in the console. (This is just for testing purposes)
+- Email setup is done through SendGrid. If you don't receive any email containg OTP. Please use the OTP printed in the console. (This is just for testing purposes) 
+- My Sendgrid account is under review due to which emails might get queued. You can use your own sendgrid api key or you can ignore it.
 - Sample email templates from my other project is used. Please ignore the content of the emails
 - Application is containerized using docker-compose
 
