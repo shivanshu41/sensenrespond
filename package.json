@@ -13,7 +13,7 @@
     "push:prod": "docker push registry.digitalocean.com/xyz-stage/auth:prod && docker push registry.digitalocean.com/xyz-stage/page:prod",
     "deploy": "npm run build && npm run tag && npm run push && kubectl rollout restart -n default deployment auth page",
     "deploy:prod": "npm run build && npm run tag:prod && npm run push:prod && kubectl rollout restart -n default deployment auth page",
-    "kube:restart": "kubectl rollout restart -n default deployment auth"
+    "kube:restart": "kubectl rollout restart -n default deployment auth page"
   },
   "author": "xyz",
   "license": "ISC",
