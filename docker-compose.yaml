@@ -1,0 +1,16 @@
+version: '3'
+services:
+  auth:
+    build: ./Services/Auth
+    image: auth  
+    ports:
+     - "4300:4300"
+     
+  page:
+    build: ./Services/Page
+    image: page
+    ports:
+      - "3001:3001"
+
+  
+      

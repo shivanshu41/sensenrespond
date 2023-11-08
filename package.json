@@ -1,0 +1,23 @@
+{
+  "name": "xyz",
+  "version": "2.0.0",
+  "description": "xyz API Root",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "docker-compose up",
+    "build": "docker-compose build",
+    "kill": "docker-compose down",
+    "tag": "docker tag auth registry.digitalocean.com/xyz-stage/auth && docker tag page registry.digitalocean.com/xyz-stage/page && docker tag socket registry.digitalocean.com/xyz-stage/socket && docker tag media registry.digitalocean.com/xyz-stage/media && docker tag webhook registry.digitalocean.com/xyz-stage/webhook && docker tag admin registry.digitalocean.com/xyz-stage/admin",
+    "tag:prod": "docker tag auth registry.digitalocean.com/xyz-stage/auth:prod && docker tag page registry.digitalocean.com/xyz-stage/page:prod",
+    "push": "docker push registry.digitalocean.com/xyz-stage/auth && docker push registry.digitalocean.com/xyz-stage/page",
+    "push:prod": "docker push registry.digitalocean.com/xyz-stage/auth:prod && docker push registry.digitalocean.com/xyz-stage/page:prod && docker push registry.digitalocean.com/xyz-stage/socket:prod && docker push registry.digitalocean.com/xyz-stage/media:prod && docker push registry.digitalocean.com/xyz-stage/webhook:prod && docker push registry.digitalocean.com/xyz-stage/admin:prod",
+    "deploy": "npm run build && npm run tag && npm run push && kubectl rollout restart -n default deployment auth page socket media",
+    "deploy:prod": "npm run build && npm run tag:prod && npm run push:prod && kubectl rollout restart -n default deployment auth page",
+    "kube:restart": "kubectl rollout restart -n default deployment auth"
+  },
+  "author": "xyz",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io-client": "^4.6.1"
+  }
+}
