@@ -10,6 +10,8 @@ import winston from "winston";
 import os from 'os';
 import ip from 'ip';
 import { rateLimit } from 'express-rate-limit'
+require('dotenv').config()
+
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
@@ -30,7 +32,6 @@ socket.on("disconnect", () => {
   console.log("Socket disconnected")
 })
 
-require('dotenv').config()
 const app = express();
 
 var corsOption = {
