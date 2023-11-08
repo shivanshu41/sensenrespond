@@ -23,7 +23,7 @@ https://api.postman.com/collections/5376901-10d0bdbf-94a1-4752-a2f4-7a9e448b13ba
 # Recommendations
 - Use an RSA or ECDSA key created by a valid Certificate Authority as the seed for JSONWebTokens
 - This architecture can be further improved after analysing the economics and anticipated peak load
-- This architecture can be further improved by introducing an API Gateway which can designed in a Singleton pattern or Dependency Injection pattern
+- This architecture can be further improved by introducing an API Gateway which can be designed in a Singleton pattern or Dependency Injection pattern
 
 ## Prerequisites
 - Docker Compose and Docker desktop
@@ -31,8 +31,8 @@ https://api.postman.com/collections/5376901-10d0bdbf-94a1-4752-a2f4-7a9e448b13ba
 - npm , yarn or any other package manager of choice compatible with package.json
 
 # Development
-Step 1 - Install all the dependencies using <code>yarn install</code>
-Step 2 - Build and run the api gateway along with all the microservices using <code>docker-compose up</code>
+- Step 1 - Install all the dependencies using <code>yarn install</code>
+- Step 2 - Build and run the api gateway along with all the microservices using <code>docker-compose up</code>
 
 Note - Hot reloading is not implemented as only build directories are deployed
 
