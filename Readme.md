@@ -21,7 +21,7 @@ https://api.postman.com/collections/5376901-10d0bdbf-94a1-4752-a2f4-7a9e448b13ba
 - Auth Service handles the authentication and authorisation of the user using JsonWebTokens
 
 # Recommendations
-- Use an RSA or ECDSA key created a valid Certificate Authority as the seed for JSONWebTokens
+- Use an RSA or ECDSA key created by a valid Certificate Authority as the seed for JSONWebTokens
 - This architecture can be further improved after analysing the economics and anticipated peak load
 - This architecture can be further improved by introducing an API Gateway which can designed in a Singleton pattern or Dependency Injection pattern
 
