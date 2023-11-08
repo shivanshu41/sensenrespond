@@ -4,12 +4,11 @@ import cors from 'cors';
 import mongoose from "mongoose";
 import PageRoutes from "./src/routes/posts";
 import { io } from "socket.io-client";
-import { authenticateToken } from './middlewares/authenticate';
 import { responseHandler } from './middlewares/responseHandler';
-const morgan = require('morgan');
-const winston = require("winston"); 
-const os = require('os');
-const ip = require('ip');
+import morgan from 'morgan';
+import winston from "winston"; 
+import os from 'os';
+import ip from 'ip';
 import { rateLimit } from 'express-rate-limit'
 
 const limiter = rateLimit({
