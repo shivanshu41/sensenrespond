@@ -1,5 +1,5 @@
 {
-  "name": "xyz",
+  "name": "archsensenrespond",
   "version": "2.0.0",
   "description": "xyz API Root",
   "scripts": {
@@ -15,7 +15,7 @@
     "deploy:prod": "npm run build && npm run tag:prod && npm run push:prod && kubectl rollout restart -n default deployment auth page",
     "kube:restart": "kubectl rollout restart -n default deployment auth page"
   },
-  "author": "xyz",
+  "author": "Shivanshu",
   "license": "ISC",
   "dependencies": {
     "socket.io-client": "^4.6.1"
