@@ -197,12 +197,10 @@ export class PageDao {
 
     public async GetPostFeed(pageId: string, pageNumber: any, pageLength: any) {
         try {
-            // @todo pagination required
-            // first get all posts associated with page
+           
             let allPosts = await PostModel.find({ page: pageId, is_deleted: false, active: true, isPinned: false })
                 .skip(pageNumber > 0 ? ((pageNumber - 1) * pageLength) : 0).limit(pageLength)
                 .populate("createdBy", "name image").sort({ createdAt: "descending" });
-            // now find all the medias for all the posdts
             let totalCount = await PostModel.count({ page: pageId, is_deleted: false, active: true });
             
             let finalMerge = allPosts;
@@ -241,6 +239,50 @@ export class PageDao {
 
     }
 
+    public async getPostDetails(postId: string) {
+        try {
+            let allPosts = await PostModel.find({ _id: postId, is_deleted: false, active: true }).populate("createdBy", "name image");
+
+            
+
+
+            // now merge medias to post results
+            let finalMerge = allPosts;
+            
+
+            // provide like count and comment count for all posts
+
+            let allCommentsCounts = finalMerge.map((f) => {
+                return CommentModel.count({ post: f._id });
+            })
+            let allCommentCountPromises = await Promise.all(allCommentsCounts);
+
+            let allLikesCount = finalMerge.map((f) => {
+                return likeModel.count({ post: f._id })
+            })
+
+
+            let allLikesCountPromises = await Promise.all(allLikesCount);
+
+            let allLikes = finalMerge.map(async (l) => {
+                return likeModel.find({ post: l._id }).populate("createdBy", "name image")
+            })
+
+            let allLikesPromises = await Promise.all(allLikes);
+
+            // assignning comment and likes count both and also likes
+
+            let heavyMerge = finalMerge.map((f, i) => {
+                return { ...f.toObject(), counts: { comments: allCommentCountPromises[i], likes: allLikesCountPromises[i] }, likes: allLikesPromises[i] }
+            })
+
+            return { success: true, status: HttpCode.HTTP_OK, message: 'Success', data: heavyMerge };
+
+        } catch (e) {
+            console.log(e);
+            return { success: false, status: HttpCode.HTTP_INTERNAL_SERVER_ERROR, message: e.message || 'Internal server error' };
+        }
+    }
 
     public async deletePage(pageId: string, userId: string) {
         try {

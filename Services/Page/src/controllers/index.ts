@@ -110,4 +110,9 @@ export class PageController {
         let results = await new PageDao().deleteReply(replyId);
         return results
     }
+
+    public async getPostDetails(postId: string) {
+        let result = await new PageDao().getPostDetails(postId);
+        return result;
+    }
 }
