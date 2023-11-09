@@ -204,80 +204,9 @@ export class PageDao {
                 .populate("createdBy", "name image").sort({ createdAt: "descending" });
             // now find all the medias for all the posdts
             let totalCount = await PostModel.count({ page: pageId, is_deleted: false, active: true });
-            // let allPromises = allPosts.map((p) => {
-            //     return new Promise(async (resolve, reject) => {
-            //         let galleries = await gallerySchema.find({ post: p._id.toString(), page: pageId, is_deleted: false, active: true })
-            //         let mediaLikesPromises = galleries.map((g) => {
-            //             return likeModel.find({ media: g._id, is_deleted: false }).populate("createdBy", "name image _id");
-            //         })
-            //         let allMediaLikes = await Promise.all(mediaLikesPromises);
-            //         let mediaCommentPromises = galleries.map((g) => {
-            //             return CommentModel.find({ media: g._id, is_deleted: false });
-            //         })
-            //         let allMediaComments = await Promise.all(mediaCommentPromises);
-
-            //         //counts
-
-            //         let mediaLikesCountPromises = galleries.map((g) => {
-            //             return likeModel.count({ media: g._id, is_deleted: false })
-            //         })
-
-
-            //         let mediaCommentCountPromises = galleries.map((g) => {
-            //             return CommentModel.count({ media: g._id, is_deleted: false })
-            //         })
-
-            //         let mediaCommentCount = await Promise.all(mediaCommentCountPromises);
-
-            //         let mediaLikesCount = await Promise.all(mediaLikesCountPromises);
-
-            //         // merge media likes and media comments with galleries
-
-
-            //         let mergedGalleries = galleries.map((gal, i) => {
-            //             return {
-            //                 ...gal.toObject(), comments: allMediaComments[i], likes: allMediaLikes[i], counts: {
-            //                     comments: mediaCommentCount[i], likes: mediaLikesCount[i]
-            //                 }
-            //             }
-            //         })
-
-            //         resolve(mergedGalleries);
-
-            //     })
-
-            // })
-
-            // let postMedias = await Promise.all(allPromises);
-
-
-            // now merge medias to post results
+            
             let finalMerge = allPosts;
-            // for (let i = 0; i < allPosts.length; i++) {
-            //     let postId = allPosts[i]._id.toString();
-            //     let medias = [];
-
-            //     // go thru gallllery and look for this post id
-            //     for (let j = i; j < postMedias.length; j++) {
-
-            //         // gallery is an array of arrays due to all promises
-            //         if (postMedias[j].length > 0) {
-            //             for (let k = 0; k < postMedias[j].length; k++) {
-
-            //                 if (postMedias[j][k].post.toString() === postId.toString()) {
-            //                     medias.push(postMedias[j][k])
-            //                 }
-            //             }
-            //         }
-
-            //     }
-            //     finalMerge.push({
-            //         ...allPosts[i].toObject(),
-            //         medias
-            //     })
-            // }
-
-            // provide like count and comment count for all posts
+          
 
             let allCommentsCounts = finalMerge.map((f) => {
                 return CommentModel.count({ post: f._id });

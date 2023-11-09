@@ -27,10 +27,6 @@ export const likeSchema = new Schema({
     name: {
         type: Schema.Types.String,
     },
-    media: {
-        type: Schema.Types.ObjectId,
-        ref: "Gallery"
-    },
     // replies: any[],
     is_deleted: {
         type: Schema.Types.Boolean,
