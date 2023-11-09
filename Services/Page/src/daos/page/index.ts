@@ -270,7 +270,7 @@ export class PageDao {
                 return CommentModel.find({ post: l._id })
             })
 
-            let allCommentsPromises = await Promise.all(allLikes);
+            let allCommentsPromises = await Promise.all(allComments);
 
             // assignning comment and likes count both and also likes
 
