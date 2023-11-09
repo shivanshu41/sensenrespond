@@ -219,7 +219,7 @@ export class PageDao {
             let allLikesCountPromises = await Promise.all(allLikesCount);
 
             let allLikes = finalMerge.map(async (l) => {
-                return likeModel.find({ post: l._id }).populate("createdBy", "name image")
+                return likeModel.find({ post: l._id })
             })
 
             let allLikesPromises = await Promise.all(allLikes);
@@ -242,10 +242,6 @@ export class PageDao {
     public async getPostDetails(postId: string) {
         try {
             let allPosts = await PostModel.find({ _id: postId, is_deleted: false, active: true }).populate("createdBy", "name image");
-
-            
-
-
             // now merge medias to post results
             let finalMerge = allPosts;
             
@@ -265,15 +261,21 @@ export class PageDao {
             let allLikesCountPromises = await Promise.all(allLikesCount);
 
             let allLikes = finalMerge.map(async (l) => {
-                return likeModel.find({ post: l._id }).populate("createdBy", "name image")
+                return likeModel.find({ post: l._id })
             })
 
             let allLikesPromises = await Promise.all(allLikes);
 
+            let allComments = finalMerge.map(async (l) => {
+                return CommentModel.find({ post: l._id })
+            })
+
+            let allCommentsPromises = await Promise.all(allLikes);
+
             // assignning comment and likes count both and also likes
 
             let heavyMerge = finalMerge.map((f, i) => {
-                return { ...f.toObject(), counts: { comments: allCommentCountPromises[i], likes: allLikesCountPromises[i] }, likes: allLikesPromises[i] }
+                return { ...f.toObject(), counts: { comments: allCommentCountPromises[i], likes: allLikesCountPromises[i] }, likes: allLikesPromises[i] , comments : allCommentsPromises[i] }
             })
 
             return { success: true, status: HttpCode.HTTP_OK, message: 'Success', data: heavyMerge };
