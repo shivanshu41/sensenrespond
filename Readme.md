@@ -20,6 +20,7 @@ Limit each IP to 100 requests per `window` (here, per 15 minutes).
 - This architecture follows Microservice approach. It contains two microservices namely Page and Auth
 - It is designed in Dependency Injection pattern to enable high scalabality. In this we are injecting operations to the controller as dependency. The operations are defined set of services with a unique name denoting the endpoint of the service. In this way only the services are modifiable and rest of the architecture works as a unique instance.
 - This dependency injection approach prevents the data leak in a request by maintaining the context of the request inside the closure of the created instance
+- The context of the request can be provided by an api gateway or any high order service
 - Security is handled by authetication middleware which checks the token provided in Authorisation Bearer
 - Page Microservice is used for page management , post management , comment management , replies management , likes management 
 - Auth Service handles the authentication and authorisation of the user using JsonWebTokens
