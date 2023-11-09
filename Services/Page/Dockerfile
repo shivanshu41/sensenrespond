@@ -1,5 +1,6 @@
 FROM --platform=linux/amd64 node:14
 WORKDIR /PAGE
+VOLUME . /PAGE
 COPY ["package.json", "./"]
 RUN npm install --legacy-peer-deps
 COPY . .

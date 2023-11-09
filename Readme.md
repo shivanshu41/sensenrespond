@@ -24,6 +24,7 @@ Limit each IP to 100 requests per `window` (here, per 15 minutes).
 - Security is handled by authetication middleware which checks the token provided in Authorisation Bearer
 - Page Microservice is used for page management , post management , comment management , replies management , likes management 
 - Auth Service handles the authentication and authorisation of the user using JsonWebTokens
+- Morgan logger middleware is implemented
 
 # Recommendations
 - Use an RSA or ECDSA key created by a valid Certificate Authority as the seed for JSONWebTokens
